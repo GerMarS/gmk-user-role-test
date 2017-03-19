@@ -1,0 +1,29 @@
+/*!
+ * Hoja de estilo
+ */
+
+ .page-header {
+	 margin-top: 0;
+	 padding-top: 20px;
+	 background-color: #EEE;
+ }
+ 
+ .margin20 {
+	 margin-top:20px;
+ }
+ 
+ .marginleft20 {
+	 margin-left:20px;
+ }
+ 
+ .updateroles {
+	 display:none;
+ }
+ 
+ .required {
+	 color:red;
+ }
+ 
+ #create_edit_form {
+	 display:none;
+ }
