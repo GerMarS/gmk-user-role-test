@@ -58,4 +58,6 @@ Otras consideraciones
 En esta aplicación la creación de roles y mantenimiento de estos mismos no está implementada.
 No obstante se pueden añadir nuevos roles o alterar los existentes con total libertad. La aplicación los reconocerá correctamente.
 
+En las bases de datos incluidas con el código no se contempla la opción, pero, para mantener una base de datos libre de contenido basura siempre se pueden añadir claves foraneas con borrado en cascada a las tablas para mantener la tabla de user_role limpia en todo momento.
+
 
