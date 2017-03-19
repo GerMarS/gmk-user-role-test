@@ -1,70 +1,65 @@
 ###################
-What is CodeIgniter
+Explicación del proceso de la aplicación
 ###################
 
-CodeIgniter is an Application Development Framework - a toolkit - for people
-who build web sites using PHP. Its goal is to enable you to develop projects
-much faster than you could if you were writing code from scratch, by providing
-a rich set of libraries for commonly needed tasks, as well as a simple
-interface and logical structure to access these libraries. CodeIgniter lets
-you creatively focus on your project by minimizing the amount of code needed
-for a given task.
+Esta aplicación se ha realizado para GMK Medialab a modo de Test por Gerard Martínez Soy.
 
 *******************
-Release Information
+Funcionamiento general de la aplicación
 *******************
 
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
+Esta aplicación realiza el procedimiento de Creación, Actualización, Lectura y Borrado de Usuarios en un entorno
+PHP con Codeigniter.
+
+He añadido Bootstrap y Jquery a la aplicación para poder dar un estilo agradable.
+Jquery además, se ha usado para procesar algunos procesos de validación de forma asíncrona y validar algunos datos
+de los formularios, así como añadir algunos mensajes de información para el usuario.
+
+La aplicación se basa en el uso de un usuario activo, un usuario de la base de datos que se almacena en la sesión del
+usuario y que se utiliza para gestionar el resto de acciones.
+-Si el usuario activo tiene permiso de lectura en la columna de la derecha de la aplicación podrá ver un listado de los usuarios
+existentes en la base de datos.
+-Si el usuario activo tiene permiso de creación de usuarios, aparecerá un botón de creación que habilitará un formulario con 
+el que se podrán rellenar datos para insertar un nuevo usuario con diferentes roles dentro de la base de datos.
+-Si el usuario activo tiene permiso para actualizar otros usuarios, en el listado de usuarios aparecerá un botón que permite habilitar
+un formulario que servirá para editar ese usuario.
+-Si el usuario activo tiene permiso para borrar otros usuarios, en el listado de usuarios aparecerá un botón que permite borrar dicho usuario.
+
+Los diferentes formularios validan por jquery que el campo de nombre y el campo de email estén cumplimentados.
+Al enviar tanto un formulario de creación como de edición o una solicitud de borrado por AJAX, en php validamos que los campos necesarios estén rellenados,
+aparte de comprobar también que el usuario tenga realmente el permiso de la acción que se va a realizar.
+Una vez se recibe una respuesta positiva o errónea en AJAX, enseñamos un mensaje de información al usuario y refrescamos la aplicación al cabo de 3 segundos
+en caso de que sea necesario actualizar los datos de los usuarios que aparecen en pantalla.
 
 **************************
-Changelog and New Features
+Estructura de la base de datos
 **************************
 
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
+La base de datos consiste en 3 sencillas tablas (users, roles, user_role):
+-La tabla users contiene la información relevante al usuario, esta es: el nombre, el email, el teléfono y la edad.
+-La tabla roles contiene la información relevante a los diferentes roles, estos son: el nombre del rol, permiso de lectura, permiso de creación, permiso de actualización y permiso de borrado.
+-La tabla user_role contiene los identificativos tanto de users como roles para mantener una relación con información sobre los roles que tiene cada usuario.
 
-*******************
-Server Requirements
-*******************
+**************************
+Mejoras y opiniones personales sobre la estructura de la aplicación
+**************************
 
-PHP version 5.6 or newer is recommended.
+Este proyecto se ha realizado a modo de Test, así que considero que el código no es apto para ser usado en un entorno de producción,
+tendría que ser adaptado y revisado encarecidamente para minimizar la posibilidad de errores o fallos.
+La aplicación podría tendría que ser mejorada en cuanto a la seguridad se refiere, habría que revisar los procesos de validación y ver que mejoras se pueden implementar
+para asegurar un buen funcionamiento y que la base de datos no puede ser modificada por personas malintencionadas.
 
-It should work on 5.3.7 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
+Es bastante probable que muchos procesos puedan ser reescritos de una forma más optima, así que sería conveniente
+revisar el codigo para mejorar su eficiencia.
 
-************
-Installation
-************
+También la distribución del código podria ser más estructurada, quizá usar distintos controladores o modelos diferentes para usuarios y roles, para conseguir
+de esta forma un diseño más modular y sencillo de mantener.
 
-Please see the `installation section <https://codeigniter.com/user_guide/installation/index.html>`_
-of the CodeIgniter User Guide.
+**************************
+Otras consideraciones
+**************************
 
-*******
-License
-*******
+En esta aplicación la creación de roles y mantenimiento de estos mismos no está implementada.
+No obstante se pueden añadir nuevos roles o alterar los existentes con total libertad. La aplicación los reconocerá correctamente.
 
-Please see the `license
-agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
 
-*********
-Resources
-*********
-
--  `User Guide <https://codeigniter.com/docs>`_
--  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
--  `Community Forums <http://forum.codeigniter.com/>`_
--  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
--  `Community IRC <https://webchat.freenode.net/?channels=%23codeigniter>`_
-
-Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
-or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
-
-***************
-Acknowledgement
-***************
-
-The CodeIgniter team would like to thank EllisLab, all the
-contributors to the CodeIgniter project and you, the CodeIgniter user.
